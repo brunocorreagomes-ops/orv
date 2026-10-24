@@ -1,0 +1,39 @@
+Analise musicalmente o arquivo de áudio anexado, identificado pelo código SUNO no nome. Esta é uma escuta editorial para organizar um catálogo autoral. Trabalhe com UM arquivo por resposta.
+
+Baseie a análise no SOM do começo ao fim. Ignore o título, os metadados, a capa e qualquer estilo escrito no ID3 para decidir o gênero. Se você não conseguir processar o áudio integralmente, informe a limitação e mantenha os campos afetados como indeterminado; não simule escuta.
+
+1. Identifique o tipo: faixa completa, versão/remix aparente, possível stem, assinatura/jingle, trecho/teste ou indeterminado. Um áudio isolado não prova que é remix; diferencie hipótese de confirmação.
+2. Escolha um gênero principal amplo e até duas influências/subgêneros, com evidências audíveis: bateria, baixo, harmonia, instrumentos, produção e linguagem vocal. Prefira categoria ampla a precisão falsa.
+3. Descreva voz: instrumental, masculina percebida, feminina percebida, dueto, grupo/coro, voz processada ou indeterminada. Registre idioma somente quando audível com confiança.
+4. Descreva clima e energia baixa/média/alta, apontando mudanças ao longo da faixa. Não confunda volume de master com energia musical.
+5. Descreva estrutura com timestamps aproximados: introdução, entrada do groove/voz, mudanças, refrão/drop quando houver, break e encerramento. Não force estrutura pop em uma faixa instrumental.
+6. Sugira até dois trechos fortes com INÍCIO e FIM em mm:ss e explique por que funcionam. Escolha pela música real, não apenas pelo pico de volume. Inclua o melhor trecho curto para divulgação, quando possível.
+7. Aponte problemas audíveis e seus timestamps: voz/idioma incoerente, dicção, repetição sem evolução, timbre artificial, transição, distorção perceptível, final abrupto, arranjo ou duração. Não invente defeitos nem forneça LUFS, true peak, tonalidade ou BPM exatos sem medição. Se houver estimativa, rotule como estimativa e diga sua confiança.
+8. Sugira situação editorial preliminar: candidata a lançamento, retrabalhar, arquivar ou avaliação insuficiente. Justifique sem notas numéricas arbitrárias.
+9. Depois da análise musical, sugira um destino ou nenhum: Vintage Beats (disco, funk, soul e grooves retrô); CASA 1973 (música sofisticada para ambientes, soul/house/jazz conforme o som); LIAFTER (eletrônica noturna, dark/trap/drive); outro projeto; ainda sem destino. Não force a faixa a caber nesses projetos.
+
+Entregue uma ficha em português e depois um bloco JSON válido com esta estrutura. Use null quando não puder avaliar. Não coloque comentários no JSON.
+{
+  "codigo": "SUNO-xxxxxx",
+  "audio_integral_processado": true,
+  "limitacao": null,
+  "tipo": "",
+  "tipo_confianca": "alta|media|baixa",
+  "genero_principal": "",
+  "influencias": [],
+  "genero_confianca": "alta|media|baixa",
+  "evidencias_audiveis": [],
+  "voz": "",
+  "idioma": null,
+  "clima": [],
+  "energia": "baixa|media|alta|variavel",
+  "estrutura": [{"inicio": "mm:ss", "fim": "mm:ss", "descricao": ""}],
+  "trechos_fortes": [{"inicio": "mm:ss", "fim": "mm:ss", "motivo": ""}],
+  "problemas": [{"tempo": "mm:ss", "descricao": "", "confianca": "alta|media|baixa"}],
+  "situacao_preliminar": "",
+  "justificativa_editorial": "",
+  "projeto_sugerido": "",
+  "projeto_justificativa": ""
+}
+
+Se não houve acesso ao som, audio_integral_processado deve ser false e a ficha não deve ser preenchida a partir do nome ou metadados. Mesmo com o áudio processado, o julgamento é preliminar e não deve prometer desempenho comercial.
