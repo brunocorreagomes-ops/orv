@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-padding-top: 96px;
+  }
+
+  body {
+    @apply bg-brand-bg text-brand-text antialiased font-sans;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/[0.02] backdrop-blur-md border border-white/[0.07];
+  }
+
+  .glass-premium {
+    @apply bg-white/[0.02] border border-white/10;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-white via-neutral-200 to-neutral-400 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-red {
+    @apply bg-gradient-to-r from-white via-brand-red to-white bg-clip-text text-transparent;
+  }
+
+  .dna-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    .dna-grid {
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.5rem;
+    }
+  }
+}
+
+@layer utilities {
+  .responsive-title {
+    @apply text-[clamp(2.25rem,10vw,9.5rem)] sm:text-6xl md:text-8xl lg:text-9xl leading-[1.1] md:leading-[1];
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+  .responsive-subtitle {
+    @apply text-[clamp(1.75rem,8vw,8.5rem)] sm:text-5xl md:text-7xl lg:text-8xl leading-[1.05] md:leading-[1];
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Respeita a preferência do sistema por movimento reduzido. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Contraste reforçado para texto secundário em fundos claros. */
+.text-brand-muted { color: #3F4A47; }
+
+/* The drawer uses the viewport, with its own native touch scroll area. */
+.mobile-navigation-drawer {
+  height: calc(100vh - 76px);
+  height: calc(100dvh - 76px);
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+  -webkit-overflow-scrolling: touch;
+}
+@media (min-width: 768px) {
+  .mobile-navigation-drawer {
+    height: calc(100vh - 88px);
+    height: calc(100dvh - 88px);
+  }
+}
+@layer base {
+  h1, h2, h3 { overflow-wrap: break-word; }
+  input, textarea, select { max-width: 100%; }
+  @media (max-width: 767px) {
+    input, textarea, select { font-size: max(1rem, 1em); }
+  }
+}
